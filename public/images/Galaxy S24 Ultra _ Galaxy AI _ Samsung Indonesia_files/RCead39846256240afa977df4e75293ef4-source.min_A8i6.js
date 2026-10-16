@@ -1,0 +1,2 @@
+// For license information, see `https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RCead39846256240afa977df4e75293ef4-source.js`.
+_satellite.__registerScript('https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RCead39846256240afa977df4e75293ef4-source.min.js', "(rtbhEvents=window.rtbhEvents||[]).push({eventType:\"offer\",offerId:digitalData.product.model_code},{eventType:\"uid\",id:\"unknown\"});");

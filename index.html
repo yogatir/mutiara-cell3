@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutiara Cell - Toko Gadget Premium Resmi</title>
+  <meta name="description" content="Toko gadget premium resmi terpercaya di Indonesia. Menyediakan iPhone, Samsung, Xiaomi, Apple Watch, AirPods dengan garansi resmi.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#168287',
+            'brand-hover': '#11686c',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Font Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Top Announcement Bar -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+    <div class="bg-zinc-950 text-white text-[11px] sm:text-xs py-1.5 px-4 text-center font-medium border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="announcement-text">
+          🎉 Promo Spesial: Gratis Ongkir Seluruh Indonesia • Garansi Resmi TAM/iBox • Cicilan 0%
+        </span>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <!-- Brand Logo -->
+        <div class="flex items-center space-x-8">
+          <a href="#" onclick="filterCategory('all'); return false;" class="flex items-center">
+            <img src="public/images/mutiara-logo.png" alt="Mutiara Cell" class="h-8 md:h-9 w-auto object-contain rounded-md">
+          </a>
+
+          <!-- Desktop Links -->
+          <nav class="hidden md:flex space-x-7">
+            <button onclick="filterCategory('smartphone')" class="nav-btn text-xs text-gray-600 hover:text-black transition-colors uppercase tracking-widest font-semibold" data-category="smartphone">Smartphone</button>
+            <button onclick="filterCategory('tablet')" class="nav-btn text-xs text-gray-600 hover:text-black transition-colors uppercase tracking-widest font-semibold" data-category="tablet">Tablet</button>
+            <button onclick="filterCategory('smartwatch')" class="nav-btn text-xs text-gray-600 hover:text-black transition-colors uppercase tracking-widest font-semibold" data-category="smartwatch">Smartwatch</button>
+            <button onclick="filterCategory('audio')" class="nav-btn text-xs text-gray-600 hover:text-black transition-colors uppercase tracking-widest font-semibold" data-category="audio">Audio</button>
+            <button onclick="filterCategory('aksesoris')" class="nav-btn text-xs text-gray-600 hover:text-black transition-colors uppercase tracking-widest font-semibold" data-category="aksesoris">Aksesoris</button>
+          </nav>
+        </div>
+
+        <!-- Right Action Icons -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <!-- Search Toggle -->
+          <button onclick="toggleSearch()" class="p-2 text-gray-600 hover:text-black transition-colors rounded-full hover:bg-gray-100" title="Cari Produk">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Language Selector -->
+          <button onclick="toggleLanguage()" class="p-2 text-gray-600 hover:text-black transition-colors rounded-full hover:bg-gray-100 flex items-center space-x-1" title="Ganti Bahasa">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+            <span id="lang-indicator" class="text-[11px] font-bold">ID</span>
+          </button>
+
+          <!-- Shopping Cart Icon with Badge -->
+          <button onclick="toggleCartDrawer()" class="p-2 text-gray-600 hover:text-black transition-colors rounded-full hover:bg-gray-100 relative" title="Keranjang Belanja">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-badge" class="hidden absolute top-0.5 right-0.5 bg-black text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+              0
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Dropdown Box -->
+    <div id="search-box" class="hidden bg-white border-t border-gray-200 shadow-xl py-4 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative flex items-center">
+          <i data-lucide="search" class="absolute left-4 text-gray-400 w-5 h-5"></i>
+          <input 
+            type="text" 
+            id="search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="Cari smartphone, tablet, aksesoris (contoh: iPhone 15, S24, AirPods)..."
+            class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-full py-3 pl-12 pr-6 focus:outline-none focus:ring-2 focus:ring-[#168287] focus:bg-white text-sm"
+          >
+        </div>
+        <div class="mt-3 flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-gray-400 font-medium">Pencarian Populer:</span>
+          <button onclick="quickSearch('iPhone 15')" class="text-xs bg-gray-100 hover:bg-[#168287] hover:text-white text-gray-700 px-3 py-1 rounded-full transition-colors">iPhone 15</button>
+          <button onclick="quickSearch('Galaxy S24')" class="text-xs bg-gray-100 hover:bg-[#168287] hover:text-white text-gray-700 px-3 py-1 rounded-full transition-colors">Galaxy S24</button>
+          <button onclick="quickSearch('Watch')" class="text-xs bg-gray-100 hover:bg-[#168287] hover:text-white text-gray-700 px-3 py-1 rounded-full transition-colors">Apple Watch</button>
+          <button onclick="quickSearch('AirPods')" class="text-xs bg-gray-100 hover:bg-[#168287] hover:text-white text-gray-700 px-3 py-1 rounded-full transition-colors">AirPods Pro</button>
+          <button onclick="quickSearch('Xiaomi')" class="text-xs bg-gray-100 hover:bg-[#168287] hover:text-white text-gray-700 px-3 py-1 rounded-full transition-colors">Xiaomi 17</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow">
+
+    <!-- 1. HERO CAROUSEL SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-2 w-full">
+      <div 
+        id="hero-banner"
+        class="relative w-full h-[540px] md:h-[480px] rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white shadow-2xl border border-zinc-800"
+        onmouseenter="pauseHeroSlider()"
+        onmouseleave="resumeHeroSlider()"
+      >
+        <!-- Ambient Radial Glows -->
+        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-[#168287]/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-20 -left-20 w-80 h-80 bg-zinc-700/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Slide Container -->
+        <div id="slides-container" class="relative w-full h-full">
+          <!-- Slide 1: iPhone 15 Pro -->
+          <div class="hero-slide absolute inset-0 flex flex-col-reverse md:flex-row transition-opacity duration-700 opacity-100 z-10">
+            <div class="w-full md:w-1/2 h-[55%] md:h-full flex flex-col items-center md:items-start justify-center text-center md:text-left px-6 sm:px-12 lg:px-16 z-10">
+              <div class="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-white/10 text-zinc-200 text-xs font-semibold tracking-wider mb-4 border border-white/15 uppercase backdrop-blur-md">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span class="slide-badge">PRODUK TERLARIS</span>
+              </div>
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 tracking-tight text-white leading-tight">iPhone 15 Pro</h1>
+              <p class="text-sm md:text-base text-zinc-300 mb-2 font-light max-w-md line-clamp-2 slide-desc">Titanium. Sangat kuat. Sangat ringan. Sangat Pro.</p>
+              <p class="text-xs sm:text-sm font-semibold text-[#25adb5] mb-6">Mulai dari Rp 18.999.000</p>
+              <div class="flex items-center space-x-3">
+                <button onclick="addToCartById('1')" class="bg-[#168287] hover:bg-[#11686c] text-white px-7 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-[#168287]/25 active:scale-95 text-sm sm:text-base">
+                  Beli Sekarang
+                </button>
+                <button onclick="openProductModal('1')" class="border border-white/25 hover:border-white text-white hover:bg-white/10 px-6 py-2.5 rounded-full font-medium transition-all text-sm sm:text-base backdrop-blur-sm">
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 h-[45%] md:h-full relative flex items-center justify-center p-6 md:p-10 z-10">
+              <img src="public/images/iphone_15_pro.png" alt="iPhone 15 Pro" class="max-h-full max-w-full object-contain p-4 md:p-8 drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)]">
+            </div>
+          </div>
+
+          <!-- Slide 2: Samsung Galaxy S24 Ultra -->
+          <div class="hero-slide absolute inset-0 flex flex-col-reverse md:flex-row transition-opacity duration-700 opacity-0 pointer-events-none z-0">
+            <div class="w-full md:w-1/2 h-[55%] md:h-full flex flex-col items-center md:items-start justify-center text-center md:text-left px-6 sm:px-12 lg:px-16 z-10">
+              <div class="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-white/10 text-zinc-200 text-xs font-semibold tracking-wider mb-4 border border-white/15 uppercase backdrop-blur-md">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span class="slide-badge">FLAGSHIP RESMI</span>
+              </div>
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 tracking-tight text-white leading-tight">Galaxy S24 Ultra</h1>
+              <p class="text-sm md:text-base text-zinc-300 mb-2 font-light max-w-md line-clamp-2 slide-desc">Galaxy AI is here. Era baru smartphone dengan performa Snapdragon 8 Gen 3.</p>
+              <p class="text-xs sm:text-sm font-semibold text-[#25adb5] mb-6">Mulai dari Rp 21.999.000</p>
+              <div class="flex items-center space-x-3">
+                <button onclick="addToCartById('7')" class="bg-[#168287] hover:bg-[#11686c] text-white px-7 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-[#168287]/25 active:scale-95 text-sm sm:text-base">
+                  Beli Sekarang
+                </button>
+                <button onclick="openProductModal('7')" class="border border-white/25 hover:border-white text-white hover:bg-white/10 px-6 py-2.5 rounded-full font-medium transition-all text-sm sm:text-base backdrop-blur-sm">
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 h-[45%] md:h-full relative flex items-center justify-center p-6 md:p-10 z-10">
+              <img src="public/images/galaxy-s24-ultra-highlights-color-titanium-gray-back_A8i6.jpg" alt="Galaxy S24 Ultra" class="max-h-full max-w-full object-contain p-4 md:p-8 rounded-2xl drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)]">
+            </div>
+          </div>
+
+          <!-- Slide 3: Xiaomi 17 -->
+          <div class="hero-slide absolute inset-0 flex flex-col-reverse md:flex-row transition-opacity duration-700 opacity-0 pointer-events-none z-0">
+            <div class="w-full md:w-1/2 h-[55%] md:h-full flex flex-col items-center md:items-start justify-center text-center md:text-left px-6 sm:px-12 lg:px-16 z-10">
+              <div class="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-white/10 text-zinc-200 text-xs font-semibold tracking-wider mb-4 border border-white/15 uppercase backdrop-blur-md">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span class="slide-badge">PROMO TERBATAS</span>
+              </div>
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 tracking-tight text-white leading-tight">Xiaomi 17</h1>
+              <p class="text-sm md:text-base text-zinc-300 mb-2 font-light max-w-md line-clamp-2 slide-desc">Leica Optics legendaris dengan layar super halus 120Hz HyperCharge 90W.</p>
+              <p class="text-xs sm:text-sm font-semibold text-[#25adb5] mb-6">Mulai dari Rp 11.999.000</p>
+              <div class="flex items-center space-x-3">
+                <button onclick="addToCartById('8')" class="bg-[#168287] hover:bg-[#11686c] text-white px-7 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-[#168287]/25 active:scale-95 text-sm sm:text-base">
+                  Beli Sekarang
+                </button>
+                <button onclick="openProductModal('8')" class="border border-white/25 hover:border-white text-white hover:bg-white/10 px-6 py-2.5 rounded-full font-medium transition-all text-sm sm:text-base backdrop-blur-sm">
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 h-[45%] md:h-full relative flex items-center justify-center p-6 md:p-10 z-10">
+              <img src="public/images/xiaomi17.png" alt="Xiaomi 17" class="max-h-full max-w-full object-contain p-4 md:p-8 drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)]">
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider Arrow Controls -->
+        <button onclick="prevSlide()" class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white items-center justify-center backdrop-blur-md border border-white/10 transition-all hover:scale-105 active:scale-95">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button onclick="nextSlide()" class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white items-center justify-center backdrop-blur-md border border-white/10 transition-all hover:scale-105 active:scale-95">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Centered Dot Indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-2">
+          <button onclick="goToSlide(0)" class="hero-dot h-2 rounded-full transition-all duration-300 bg-white w-7" aria-label="Slide 1"></button>
+          <button onclick="goToSlide(1)" class="hero-dot h-2 rounded-full transition-all duration-300 bg-white/30 w-2 hover:bg-white/60" aria-label="Slide 2"></button>
+          <button onclick="goToSlide(2)" class="hero-dot h-2 rounded-full transition-all duration-300 bg-white/30 w-2 hover:bg-white/60" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TRUST BADGES SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Badge 1 -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md hover:border-gray-200 transition-all flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-[#e8f5f6] text-[#168287] flex items-center justify-center flex-shrink-0 group-hover:bg-[#168287] group-hover:text-white transition-colors duration-300">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900 leading-snug">100% Produk Original</h4>
+            <p class="text-xs text-gray-500 mt-0.5">Garansi Resmi TAM, SEIN & iBox</p>
+          </div>
+        </div>
+
+        <!-- Badge 2 -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md hover:border-gray-200 transition-all flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-[#e8f5f6] text-[#168287] flex items-center justify-center flex-shrink-0 group-hover:bg-[#168287] group-hover:text-white transition-colors duration-300">
+            <i data-lucide="truck" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900 leading-snug">Gratis Ongkir & Asuransi</h4>
+            <p class="text-xs text-gray-500 mt-0.5">Pengiriman cepat ke seluruh Indonesia</p>
+          </div>
+        </div>
+
+        <!-- Badge 3 -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md hover:border-gray-200 transition-all flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-[#e8f5f6] text-[#168287] flex items-center justify-center flex-shrink-0 group-hover:bg-[#168287] group-hover:text-white transition-colors duration-300">
+            <i data-lucide="credit-card" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900 leading-snug">Cicilan 0% s/d 24 Bulan</h4>
+            <p class="text-xs text-gray-500 mt-0.5">Didukung bank & kartu kredit utama</p>
+          </div>
+        </div>
+
+        <!-- Badge 4 -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md hover:border-gray-200 transition-all flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-[#e8f5f6] text-[#168287] flex items-center justify-center flex-shrink-0 group-hover:bg-[#168287] group-hover:text-white transition-colors duration-300">
+            <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900 leading-snug">Trade-In & Purna Jual</h4>
+            <p class="text-xs text-gray-500 mt-0.5">Tukar tambah & klaim servis terpercaya</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. POPULAR CATEGORIES SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 w-full">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">Kategori Pilihan</h3>
+          <p class="text-xs sm:text-sm text-gray-500 mt-0.5">Pilih kategori produk gadget yang Anda butuhkan</p>
+        </div>
+        <button onclick="filterCategory('all')" class="text-xs sm:text-sm font-semibold text-[#168287] hover:text-[#11686c] flex items-center gap-1 group">
+          <span>Semua Produk</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
+        <!-- Smartphone -->
+        <button onclick="filterCategory('smartphone')" class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all group">
+          <div class="w-12 h-12 rounded-2xl bg-[#e8f5f6] text-[#168287] group-hover:bg-[#168287] group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+            <i data-lucide="smartphone" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-sm font-bold text-gray-900 group-hover:text-[#168287] transition-colors">Smartphone</h4>
+          <p class="text-[11px] text-gray-400 mt-0.5">iPhone, Galaxy, Xiaomi</p>
+        </button>
+
+        <!-- Tablet -->
+        <button onclick="filterCategory('tablet')" class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all group">
+          <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+            <i data-lucide="tablet" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-sm font-bold text-gray-900 group-hover:text-[#168287] transition-colors">Tablet</h4>
+          <p class="text-[11px] text-gray-400 mt-0.5">iPad & Galaxy Tab</p>
+        </button>
+
+        <!-- Smartwatch -->
+        <button onclick="filterCategory('smartwatch')" class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all group">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+            <i data-lucide="watch" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-sm font-bold text-gray-900 group-hover:text-[#168287] transition-colors">Smartwatch</h4>
+          <p class="text-[11px] text-gray-400 mt-0.5">Apple Watch & Band</p>
+        </button>
+
+        <!-- Audio -->
+        <button onclick="filterCategory('audio')" class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+            <i data-lucide="headphones" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-sm font-bold text-gray-900 group-hover:text-[#168287] transition-colors">Audio</h4>
+          <p class="text-[11px] text-gray-400 mt-0.5">AirPods & TWS</p>
+        </button>
+
+        <!-- Aksesoris -->
+        <button onclick="filterCategory('aksesoris')" class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg hover:border-gray-200 hover:-translate-y-1 transition-all group">
+          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-sm font-bold text-gray-900 group-hover:text-[#168287] transition-colors">Aksesoris</h4>
+          <p class="text-[11px] text-gray-400 mt-0.5">Charger & MagSafe</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. PRODUCT GRID SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
+      <div class="text-center mb-10">
+        <span id="active-category-badge" class="text-xs font-bold text-[#168287] uppercase tracking-widest bg-[#e8f5f6] px-3.5 py-1 rounded-full border border-[#168287]/20">
+          Koleksi Unggulan
+        </span>
+        <h2 id="section-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mt-3">
+          Produk Terbaru & Terpopuler
+        </h2>
+        <p id="section-subtitle" class="mt-2.5 text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
+          Temukan inovasi gadget terkini dengan jaminan garansi resmi dan penawaran cicilan 0%.
+        </p>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Products will be dynamically populated by JavaScript -->
+      </div>
+
+      <!-- Reset Filter / View All button -->
+      <div class="mt-12 text-center">
+        <button onclick="filterCategory('all')" class="inline-block border border-gray-300 text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 hover:border-gray-400 transition-colors shadow-sm text-sm">
+          Lihat Semua Produk
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 5. SHOPPING CART DRAWER (Slide-over) -->
+  <div id="cart-drawer-overlay" onclick="toggleCartDrawer()" class="hidden fixed inset-0 bg-black/50 z-50 transition-opacity backdrop-blur-sm"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Header -->
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-gray-900"></i>
+        <h3 class="text-lg font-bold text-gray-900">Keranjang Belanja</h3>
+        <span id="drawer-cart-count" class="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+      </div>
+      <button onclick="toggleCartDrawer()" class="p-2 text-gray-400 hover:text-black rounded-full hover:bg-gray-100">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Items List -->
+    <div id="drawer-items" class="flex-grow overflow-y-auto p-5 space-y-4 custom-scrollbar">
+      <div class="text-center py-16 text-gray-400">
+        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto text-gray-300 mb-3"></i>
+        <p class="text-sm">Keranjang Anda masih kosong.</p>
+      </div>
+    </div>
+
+    <!-- Subtotal & Checkout -->
+    <div class="p-5 border-t border-gray-100 bg-gray-50/70">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-gray-500 font-medium">Total Pembayaran:</span>
+        <span id="drawer-total-price" class="text-lg font-extrabold text-gray-900">Rp 0</span>
+      </div>
+      <button onclick="checkoutCart()" class="w-full bg-[#168287] hover:bg-[#11686c] text-white py-3 px-4 rounded-full font-bold text-sm shadow-md transition-all active:scale-95">
+        Checkout Sekarang
+      </button>
+    </div>
+  </div>
+
+  <!-- 6. PRODUCT DETAIL MODAL -->
+  <div id="detail-modal-overlay" onclick="closeProductModal()" class="hidden fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"></div>
+  <div id="detail-modal" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-3xl z-50 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <!-- Populated via JavaScript -->
+  </div>
+
+  <!-- 7. FLOATING WHATSAPP BUTTON -->
+  <div class="fixed bottom-6 right-6 z-40 flex items-center group">
+    <!-- Online CS Badge -->
+    <a 
+      href="https://wa.me/6281234567890?text=Halo%20Mutiara%20Cell,%20saya%20ingin%20tanya%20produk%20dan%20promo" 
+      target="_blank"
+      class="hidden sm:flex items-center gap-2 mr-3 bg-white hover:bg-gray-50 text-gray-800 text-xs font-bold py-2 px-3.5 rounded-full shadow-lg border border-gray-200 transition-all hover:scale-105"
+    >
+      <span class="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse"></span>
+      <span>Chat CS WhatsApp</span>
+    </a>
+
+    <!-- Official WhatsApp Floating Button -->
+    <a 
+      href="https://wa.me/6281234567890?text=Halo%20Mutiara%20Cell,%20saya%20ingin%20tanya%20produk%20dan%20promo" 
+      target="_blank"
+      class="relative bg-[#25D366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95"
+      aria-label="WhatsApp Support"
+      title="Hubungi Kami di WhatsApp"
+    >
+      <span class="absolute -inset-1 rounded-full bg-[#25D366]/40 animate-ping pointer-events-none"></span>
+      <!-- Official WhatsApp Logo -->
+      <svg class="w-8 h-8 fill-white relative z-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- 8. FOOTER -->
+  <footer class="bg-[#f5f5f7] pt-12 pb-10 border-t border-gray-200 text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
+        <!-- Brand Info -->
+        <div class="md:col-span-2">
+          <a href="#" onclick="filterCategory('all'); return false;" class="inline-block mb-3">
+            <img src="public/images/mutiara-logo.png" alt="Mutiara Cell" class="h-8 w-auto object-contain rounded-md">
+          </a>
+          <p class="text-xs text-gray-500 leading-relaxed max-w-sm mb-4">
+            Toko gadget dan aksesoris resmi terpercaya di Indonesia. Menyediakan jajaran produk teknologi terkini dengan jaminan garansi resmi dan layanan purna jual terbaik.
+          </p>
+          <div class="space-y-2 text-xs text-gray-500">
+            <div class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-gray-400"></i>
+              <span>Senin – Minggu: 09:00 – 21:00 WIB</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-gray-400"></i>
+              <span>+62 812-3456-7890 (WhatsApp CS)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-gray-400"></i>
+              <span>cs@mutiaracell.com</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i>
+              <span>Jakarta, Indonesia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kategori Produk -->
+        <div>
+          <h4 class="text-sm font-semibold text-gray-900 mb-3">Kategori Produk</h4>
+          <ul class="space-y-2 text-xs text-gray-500">
+            <li><button onclick="filterCategory('smartphone')" class="hover:text-black transition-colors">Smartphone</button></li>
+            <li><button onclick="filterCategory('tablet')" class="hover:text-black transition-colors">Tablet</button></li>
+            <li><button onclick="filterCategory('smartwatch')" class="hover:text-black transition-colors">Smartwatch</button></li>
+            <li><button onclick="filterCategory('audio')" class="hover:text-black transition-colors">Audio</button></li>
+            <li><button onclick="filterCategory('aksesoris')" class="hover:text-black transition-colors">Aksesoris</button></li>
+          </ul>
+        </div>
+
+        <!-- Layanan -->
+        <div>
+          <h4 class="text-sm font-semibold text-gray-900 mb-3">Bantuan & Layanan</h4>
+          <ul class="space-y-2 text-xs text-gray-500">
+            <li><a href="#" class="hover:text-black transition-colors">Service Center</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">Trade-In (Tukar Tambah)</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">Klaim Garansi Resmi</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h4 class="text-sm font-semibold text-gray-900 mb-3">Ikuti Kami</h4>
+          <ul class="space-y-2 text-xs text-gray-500">
+            <li><a href="#" class="hover:text-black transition-colors">Instagram (@mutiaracell)</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">TikTok (@mutiaracell)</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">Facebook</a></li>
+            <li><a href="#" class="hover:text-black transition-colors">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Shipping & Payment Section -->
+      <div class="py-8 border-t border-gray-200/80 grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+        <!-- Shipping Partners -->
+        <div>
+          <h5 class="text-xs font-bold text-gray-900 mb-4 tracking-wider uppercase">Metode Pengiriman Resmi</h5>
+          <div class="flex flex-wrap gap-3 items-center">
+            <div class="bg-white rounded-xl w-20 h-11 flex items-center justify-center p-2 shadow-sm border border-gray-200/70">
+              <img src="public/images/jt-express-logo-png_seeklogo-336498.png" alt="J&T" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-20 h-11 flex items-center justify-center p-2 shadow-sm border border-gray-200/70">
+              <img src="public/images/logojneexpress.png" alt="JNE" class="max-h-full max-w-full object-contain">
+            </div>
+          </div>
+        </div>
+
+        <!-- Verified Payment Methods -->
+        <div>
+          <h5 class="text-xs font-bold text-gray-900 mb-4 tracking-wider uppercase">Metode Pembayaran Terverifikasi</h5>
+          <div class="flex flex-wrap gap-2.5 items-center">
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/bank-mandiri-logo-png_seeklogo-16290.png" alt="Mandiri" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/bri-logo.png" alt="BRI" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/bank-bni-logo-png_seeklogo-355606.png" alt="BNI" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/bca-bank-logo-png_seeklogo-232742.png" alt="BCA" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/permatabank-logo-png_seeklogo-633996.png" alt="Permata" class="max-h-full max-w-full object-contain">
+            </div>
+            <div class="bg-white rounded-xl w-16 h-10 flex items-center justify-center p-1.5 shadow-sm border border-gray-200/70">
+              <img src="public/images/alfamart-logo-png_seeklogo-339891.png" alt="Alfamart" class="max-h-full max-w-full object-contain">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+        <p class="mb-3 md:mb-0">&copy; <span id="year">2026</span> Mutiara Cell. Hak Cipta Dilindungi Undang-Undang.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-gray-700 transition-colors">Kebijakan Privasi</a>
+          <span class="text-gray-300">|</span>
+          <a href="#" class="hover:text-gray-700 transition-colors">Syarat & Ketentuan</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: E-COMMERCE LOGIC -->
+  <script>
+    // Product Database
+    const products = [
+      {
+        id: "1",
+        name: "iPhone 15 Pro",
+        slug: "iphone-15-pro",
+        description: "Titanium. Sangat kuat. Sangat ringan. Sangat Pro.",
+        price: 18999000,
+        originalPrice: 20999000,
+        rating: 4.9,
+        reviewsCount: 142,
+        badge: "Terlaris",
+        category: "smartphone",
+        imageUrl: "public/images/iphone_15_pro.png",
+        specs: "Layar 6.1\" Super Retina XDR • Chip A17 Pro • Kamera 48MP • Titanium"
+      },
+      {
+        id: "7",
+        name: "Samsung Galaxy S24 Ultra",
+        slug: "samsung-galaxy-s24-ultra",
+        description: "Galaxy AI is here. Welcome to the era of mobile AI.",
+        price: 21999000,
+        originalPrice: 23999000,
+        rating: 4.9,
+        reviewsCount: 118,
+        badge: "Flagship",
+        category: "smartphone",
+        imageUrl: "public/images/galaxy-s24-ultra-highlights-color-titanium-gray-back_A8i6.jpg",
+        specs: "Layar 6.8\" AMOLED 2X • Snapdragon 8 Gen 3 • Kamera 200MP • S-Pen"
+      },
+      {
+        id: "8",
+        name: "Xiaomi 17",
+        slug: "xiaomi-17",
+        description: "Leica optics. Mengabadikan momen legendaris.",
+        price: 11999000,
+        originalPrice: 12999000,
+        rating: 4.8,
+        reviewsCount: 89,
+        badge: "Promo",
+        category: "smartphone",
+        imageUrl: "public/images/xiaomi17.png",
+        specs: "Layar 6.36\" 1.5K AMOLED 120Hz • Snapdragon 8 Gen 3 • Leica Triple 50MP"
+      },
+      {
+        id: "9",
+        name: "OPPO Find N3 Flip",
+        slug: "oppo-find-n3-flip",
+        description: "Gaya di setiap lipatan. Hasselblad Camera untuk mobile.",
+        price: 15999000,
+        originalPrice: 16999000,
+        rating: 4.8,
+        reviewsCount: 64,
+        badge: "Populer",
+        category: "smartphone",
+        imageUrl: "public/images/find-n3-flip.png",
+        specs: "Layar Lipat 6.8\" LTPO AMOLED • Dimensity 9200 • Hasselblad 50MP"
+      },
+      {
+        id: "10",
+        name: "vivo X100 Pro",
+        slug: "vivo-x100-pro",
+        description: "Fotografi profesional di genggaman Anda hasil kerja sama ZEISS.",
+        price: 16999000,
+        originalPrice: 17999000,
+        rating: 4.8,
+        reviewsCount: 52,
+        badge: "Kamera Pro",
+        category: "smartphone",
+        imageUrl: "public/images/Vivo-X100-Pro-all.jpg",
+        specs: "Layar 6.78\" LTPO AMOLED • Dimensity 9300 • ZEISS APO Telephoto 50MP"
+      },
+      {
+        id: "11",
+        name: "Samsung Galaxy Tab S11",
+        slug: "samsung-galaxy-tab-s11",
+        description: "Tablet revolusioner dengan layar memukau dan performa tiada banding.",
+        price: 14999000,
+        originalPrice: 15999000,
+        rating: 4.9,
+        reviewsCount: 47,
+        badge: "Baru",
+        category: "tablet",
+        imageUrl: "public/images/samsung_galaxy_tab_s11_ultra_5g_gray_1.webp",
+        specs: "Layar 11\" Dynamic AMOLED 2X • Snapdragon 8 Gen 4 • Baterai 8400 mAh"
+      },
+      {
+        id: "12",
+        name: "Apple Watch Series 10",
+        slug: "apple-watch-series-10",
+        description: "Layar lebih besar dengan desain tertipis. Fitur kesehatan & kebugaran tercanggih.",
+        price: 7999000,
+        originalPrice: 8499000,
+        rating: 4.9,
+        reviewsCount: 93,
+        badge: "Baru",
+        category: "smartwatch",
+        imageUrl: "public/images/apple_watch_series_10.jpg",
+        specs: "Wide-angle OLED Retina Display • S10 SiP • ECG & Sleep Apnea"
+      },
+      {
+        id: "13",
+        name: "AirPods Pro (Gen 2)",
+        slug: "airpods-pro-2",
+        description: "Peredam Kebisingan Aktif hingga 2x lebih baik dengan Audio Spasial personal.",
+        price: 3899000,
+        originalPrice: 4299000,
+        rating: 4.9,
+        reviewsCount: 215,
+        badge: "Audio Pilihan",
+        category: "audio",
+        imageUrl: "public/images/airpods-pro-2.png",
+        specs: "Chip Apple H2 • Peredam Suara Aktif 2x • MagSafe USB-C"
+      },
+      {
+        id: "14",
+        name: "Apple 20W USB-C Adapter",
+        slug: "apple-20w-usbc-adapter",
+        description: "Pengisian daya cepat & efisien untuk iPhone, iPad, dan Apple Watch.",
+        price: 449000,
+        originalPrice: 499000,
+        rating: 4.9,
+        reviewsCount: 340,
+        badge: "Wajib Punya",
+        category: "aksesoris",
+        imageUrl: "public/images/apple-20w-adapter.jpg",
+        specs: "20W Fast Power Delivery • Port USB-C • Overheat Protection"
+      },
+      {
+        id: "15",
+        name: "Apple MagSafe Charger",
+        slug: "apple-magsafe-charger",
+        description: "Pengisian daya nirkabel magnetik cepat hingga 15W yang presisi dan aman.",
+        price: 899000,
+        originalPrice: 999000,
+        rating: 4.8,
+        reviewsCount: 180,
+        badge: "Wireless Fast",
+        category: "aksesoris",
+        imageUrl: "public/images/magsafe-charger.jpg",
+        specs: "Wireless 15W Fast Charge • Magnet Kuat • Kabel USB-C 1m"
+      }
+    ];
+
+    // State
+    let cart = [];
+    let favorites = new Set();
+    let currentCategory = 'all';
+    let currentSlide = 0;
+    let slideInterval = null;
+    let isEnglish = false;
+
+    // Format Rupiah
+    function formatRupiah(num) {
+      return 'Rp ' + num.toLocaleString('id-ID');
+    }
+
+    // Render Product Cards
+    function renderProducts(items) {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = '';
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-16 bg-[#fbfbfd] rounded-3xl border border-gray-100">
+            <i data-lucide="package-search" class="w-12 h-12 mx-auto text-gray-400 mb-3"></i>
+            <h4 class="text-lg font-bold text-gray-800">Tidak ada produk ditemukan</h4>
+            <p class="text-sm text-gray-500 mt-1">Coba gunakan kata kunci lain atau pilih kategori lain.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      items.forEach(p => {
+        const discountPercent = p.originalPrice ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0;
+        const isFav = favorites.has(p.id);
+
+        const card = document.createElement('div');
+        card.className = "bg-[#fbfbfd] border border-gray-100/90 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col group relative";
+        card.innerHTML = `
+          <!-- Top Floating Badges & Wishlist -->
+          <div class="absolute top-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
+            <span class="pointer-events-auto inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 text-[#168287] border border-[#168287]/20 shadow-sm backdrop-blur-sm">
+              ${p.badge}
+            </span>
+            <button 
+              onclick="toggleWishlist('${p.id}', event)"
+              class="pointer-events-auto w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200/60 flex items-center justify-center hover:bg-white text-gray-400 hover:text-rose-500 shadow-sm transition-all active:scale-90"
+              aria-label="Wishlist"
+            >
+              <i data-lucide="heart" class="w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : ''}"></i>
+            </button>
+          </div>
+
+          <!-- Product Image -->
+          <div onclick="openProductModal('${p.id}')" class="cursor-pointer relative aspect-square w-full mt-4 mb-5 flex-shrink-0 overflow-hidden rounded-xl bg-white p-4 flex items-center justify-center">
+            <img 
+              src="${p.imageUrl}" 
+              alt="${p.name}" 
+              class="max-h-full max-w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+            >
+          </div>
+
+          <!-- Product Info -->
+          <div class="flex flex-col flex-grow text-center">
+            <!-- Rating & Social Proof -->
+            <div class="flex items-center justify-center gap-1.5 mb-2">
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>
+              <span class="text-xs font-bold text-gray-800">${p.rating}</span>
+              <span class="text-[11px] text-gray-400">(${p.reviewsCount})</span>
+              <span class="text-gray-300">•</span>
+              <span class="text-[11px] text-emerald-600 font-semibold">Garansi Resmi</span>
+            </div>
+
+            <!-- Title -->
+            <h3 onclick="openProductModal('${p.id}')" class="cursor-pointer text-lg font-bold text-gray-900 mb-1.5 hover:text-[#168287] transition-colors line-clamp-1">
+              ${p.name}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
+              ${p.description}
+            </p>
+
+            <!-- Price -->
+            <div class="mt-auto mb-4">
+              <div class="text-base font-extrabold text-gray-900">
+                ${formatRupiah(p.price)}
+              </div>
+              ${p.originalPrice ? `
+                <div class="flex items-center justify-center gap-2 mt-0.5">
+                  <span class="text-xs text-gray-400 line-through">${formatRupiah(p.originalPrice)}</span>
+                  <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100">-${discountPercent}%</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Dual Action Buttons -->
+            <div class="grid grid-cols-2 gap-2 mt-auto">
+              <button 
+                id="btn-add-${p.id}"
+                onclick="addToCart('${p.id}', this)"
+                class="py-2 px-2 rounded-full font-semibold text-xs border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-black hover:border-gray-300 transition-all flex items-center justify-center gap-1 active:scale-95"
+              >
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>+ Keranjang</span>
+              </button>
+              <button 
+                onclick="buyNow('${p.id}')"
+                class="bg-[#168287] text-white py-2 px-2 rounded-full font-semibold text-xs hover:bg-[#11686c] transition-colors shadow-sm active:scale-95 flex items-center justify-center"
+              >
+                Beli Sekarang
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Filter by Category
+    function filterCategory(cat) {
+      currentCategory = cat;
+      const subtitle = document.getElementById('section-subtitle');
+      const badge = document.getElementById('active-category-badge');
+      const title = document.getElementById('section-title');
+
+      // Update Nav Buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.category === cat) {
+          btn.classList.add('text-black', 'border-b-2', 'border-black');
+        } else {
+          btn.classList.remove('text-black', 'border-b-2', 'border-black');
+        }
+      });
+
+      if (cat === 'all') {
+        badge.innerText = "Koleksi Unggulan";
+        title.innerText = "Produk Terbaru & Terpopuler";
+        subtitle.innerText = "Temukan inovasi gadget terkini dengan jaminan garansi resmi dan penawaran cicilan 0%.";
+        renderProducts(products);
+      } else {
+        const filtered = products.filter(p => p.category === cat);
+        const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
+        badge.innerText = `Kategori ${catName}`;
+        title.innerText = `Pilihan Produk ${catName}`;
+        subtitle.innerText = `Menampilkan ${filtered.length} produk pilihan terbaik untuk kategori ${catName}.`;
+        renderProducts(filtered);
+      }
+
+      document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Search Handling
+    function toggleSearch() {
+      const box = document.getElementById('search-box');
+      box.classList.toggle('hidden');
+      if (!box.classList.contains('hidden')) {
+        document.getElementById('search-input').focus();
+      }
+    }
+
+    function quickSearch(kw) {
+      document.getElementById('search-input').value = kw;
+      handleSearch(kw);
+    }
+
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      if (!q) {
+        filterCategory(currentCategory);
+        return;
+      }
+      const results = products.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.description.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
+      );
+      document.getElementById('section-title').innerText = `Hasil Pencarian: "${query}"`;
+      document.getElementById('section-subtitle').innerText = `Ditemukan ${results.length} produk yang sesuai.`;
+      renderProducts(results);
+    }
+
+    // Hero Slider
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.hero-dot');
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((s, idx) => {
+        if (idx === currentSlide) {
+          s.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+          s.classList.add('opacity-100', 'z-10');
+        } else {
+          s.classList.remove('opacity-100', 'z-10');
+          s.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+        }
+      });
+
+      dots.forEach((d, idx) => {
+        if (idx === currentSlide) {
+          d.className = "hero-dot h-2 rounded-full transition-all duration-300 bg-white w-7";
+        } else {
+          d.className = "hero-dot h-2 rounded-full transition-all duration-300 bg-white/30 w-2 hover:bg-white/60";
+        }
+      });
+    }
+
+    function prevSlide() { showSlide(currentSlide - 1); }
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function goToSlide(idx) { showSlide(idx); }
+
+    function startHeroSlider() {
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+    function pauseHeroSlider() { clearInterval(slideInterval); }
+    function resumeHeroSlider() { startHeroSlider(); }
+
+    // Wishlist Toggle
+    function toggleWishlist(id, event) {
+      event.stopPropagation();
+      if (favorites.has(id)) {
+        favorites.delete(id);
+      } else {
+        favorites.add(id);
+      }
+      renderProducts(currentCategory === 'all' ? products : products.filter(p => p.category === currentCategory));
+    }
+
+    // Cart Management
+    function addToCart(id, buttonEl) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      updateCartUI();
+
+      // Button feedback
+      if (buttonEl) {
+        const originalHTML = buttonEl.innerHTML;
+        buttonEl.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i><span class="text-emerald-700">Masuk!</span>`;
+        buttonEl.classList.add('bg-emerald-50', 'border-emerald-300');
+        lucide.createIcons();
+        setTimeout(() => {
+          buttonEl.innerHTML = originalHTML;
+          buttonEl.classList.remove('bg-emerald-50', 'border-emerald-300');
+          lucide.createIcons();
+        }, 1400);
+      }
+    }
+
+    function addToCartById(id) {
+      addToCart(id, null);
+      toggleCartDrawer();
+    }
+
+    function buyNow(id) {
+      addToCart(id, null);
+      toggleCartDrawer();
+    }
+
+    function updateCartUI() {
+      const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+      // Header Badge
+      const badge = document.getElementById('cart-badge');
+      if (totalQty > 0) {
+        badge.innerText = totalQty;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      // Drawer Count & Total
+      document.getElementById('drawer-cart-count').innerText = totalQty;
+      document.getElementById('drawer-total-price').innerText = formatRupiah(totalPrice);
+
+      // Drawer Items List
+      const drawerList = document.getElementById('drawer-items');
+      if (cart.length === 0) {
+        drawerList.innerHTML = `
+          <div class="text-center py-16 text-gray-400">
+            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto text-gray-300 mb-3"></i>
+            <p class="text-sm">Keranjang Anda masih kosong.</p>
+          </div>
+        `;
+      } else {
+        drawerList.innerHTML = '';
+        cart.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = "flex items-center gap-3.5 bg-gray-50/90 p-3.5 rounded-2xl border border-gray-100";
+          itemDiv.innerHTML = `
+            <img src="${item.imageUrl}" alt="${item.name}" class="w-14 h-14 object-contain bg-white rounded-xl p-1.5 border border-gray-100 flex-shrink-0">
+            <div class="flex-grow min-w-0">
+              <h5 class="text-xs font-bold text-gray-900 truncate">${item.name}</h5>
+              <p class="text-xs font-extrabold text-[#168287] mt-0.5">${formatRupiah(item.price)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-xs font-bold hover:bg-gray-100">-</button>
+                <span class="text-xs font-bold text-gray-800">${item.qty}</span>
+                <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-xs font-bold hover:bg-gray-100">+</button>
+              </div>
+            </div>
+            <button onclick="removeFromCart('${item.id}')" class="p-1.5 text-gray-400 hover:text-rose-500 rounded-lg hover:bg-rose-50 transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          `;
+          drawerList.appendChild(itemDiv);
+        });
+      }
+
+      lucide.createIcons();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCartUI();
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cart-drawer');
+      const overlay = document.getElementById('cart-drawer-overlay');
+      const isOpen = !drawer.classList.contains('translate-x-full');
+
+      if (isOpen) {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    function checkoutCart() {
+      if (cart.length === 0) {
+        alert("Keranjang belanja Anda masih kosong. Silakan pilih produk terlebih dahulu!");
+        return;
+      }
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const itemsList = cart.map(i => `- ${i.name} (${i.qty}x)`).join('%0A');
+      const waMsg = `Halo Mutiara Cell, saya ingin memesan:%0A${itemsList}%0A%0ATotal: ${formatRupiah(totalPrice)}`;
+      window.open(`https://wa.me/6281234567890?text=${waMsg}`, '_blank');
+    }
+
+    // Product Detail Modal
+    function openProductModal(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+
+      const modal = document.getElementById('detail-modal');
+      const overlay = document.getElementById('detail-modal-overlay');
+
+      modal.innerHTML = `
+        <div class="flex justify-between items-start mb-4">
+          <span class="inline-block px-3 py-1 bg-[#e8f5f6] text-[#168287] font-bold text-xs rounded-full border border-[#168287]/20">
+            ${p.badge} • Garansi Resmi
+          </span>
+          <button onclick="closeProductModal()" class="p-2 text-gray-400 hover:text-black rounded-full hover:bg-gray-100">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div class="bg-gray-50 rounded-2xl p-6 flex items-center justify-center aspect-square border border-gray-100">
+            <img src="${p.imageUrl}" alt="${p.name}" class="max-h-full max-w-full object-contain">
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 mb-2">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
+              <span class="text-sm font-bold text-gray-800">${p.rating} / 5.0</span>
+              <span class="text-xs text-gray-400">(${p.reviewsCount} Ulasan Pelanggan)</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-2">${p.name}</h3>
+            <p class="text-sm text-gray-600 mb-4 leading-relaxed">${p.description}</p>
+            
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-100 mb-5">
+              <span class="text-xs font-bold text-gray-700 block mb-1">Spesifikasi Utama:</span>
+              <p class="text-xs text-gray-500">${p.specs}</p>
+            </div>
+
+            <div class="mb-6">
+              <span class="text-2xl font-extrabold text-gray-900">${formatRupiah(p.price)}</span>
+              ${p.originalPrice ? `<span class="text-sm text-gray-400 line-through ml-2">${formatRupiah(p.originalPrice)}</span>` : ''}
+            </div>
+
+            <div class="flex gap-3">
+              <button onclick="addToCartById('${p.id}'); closeProductModal();" class="flex-1 bg-[#168287] hover:bg-[#11686c] text-white py-3 rounded-full font-bold text-sm shadow-md transition-all">
+                Beli Sekarang
+              </button>
+              <button onclick="addToCart('${p.id}', null); closeProductModal();" class="px-5 border border-gray-300 hover:border-black text-gray-800 py-3 rounded-full font-semibold text-sm transition-colors">
+                + Keranjang
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      overlay.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeProductModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+      document.getElementById('detail-modal-overlay').classList.add('hidden');
+    }
+
+    // Toggle Language (ID / EN)
+    function toggleLanguage() {
+      isEnglish = !isEnglish;
+      document.getElementById('lang-indicator').innerText = isEnglish ? 'EN' : 'ID';
+      
+      const bannerText = document.getElementById('announcement-text');
+      bannerText.innerText = isEnglish 
+        ? "🎉 Special Promo: Free Nationwide Delivery • Official Warranty • 0% Installment"
+        : "🎉 Promo Spesial: Gratis Ongkir Seluruh Indonesia • Garansi Resmi TAM/iBox • Cicilan 0%";
+
+      alert(isEnglish ? "Language switched to English!" : "Bahasa diubah ke Bahasa Indonesia!");
+    }
+
+    // Initialize Page
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').innerText = new Date().getFullYear();
+      renderProducts(products);
+      startHeroSlider();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

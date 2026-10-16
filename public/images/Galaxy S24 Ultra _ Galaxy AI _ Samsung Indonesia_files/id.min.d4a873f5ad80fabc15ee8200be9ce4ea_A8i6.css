@@ -1,0 +1,5 @@
+html[lang^=id] .hubble-product__total-text{font-size:19px}
+@media screen and (max-width:1440px){html[lang^=id] .hubble-product__total-text{font-size:1.31944444vw}
+}
+@media only screen and (max-width:767px){html[lang^=id] .hubble-product__total-text{font-size:3.88888889vw}
+}

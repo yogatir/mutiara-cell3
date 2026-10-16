@@ -1,0 +1,2 @@
+// For license information, see `https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RCb1bd19455a4247a2a5719caa3014497f-source.js`.
+_satellite.__registerScript('https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RCb1bd19455a4247a2a5719caa3014497f-source.min.js', "var crtoLoader=document.createElement(\"script\");crtoLoader.type=\"text/javascript\",crtoLoader.src=\"//dynamic.criteo.com/js/ld/ld.js?a=73163\",crtoLoader.async=\"true\",document.head.appendChild(crtoLoader);");

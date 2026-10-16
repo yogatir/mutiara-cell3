@@ -1,0 +1,2 @@
+// For license information, see `https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RC1efd9e9d5c7a490d8cd7b9b8f0bcba85-source.js`.
+_satellite.__registerScript('https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RC1efd9e9d5c7a490d8cd7b9b8f0bcba85-source.min.js', "pintrk(\"track\",\"PageVisit\",{line_items:[{product_category:digitalData.page.pathIndicator.depth_3,product_id:digitalData.product.model_code,product_name:digitalData.product.displayName,product_price:digitalData.product.model_price,product_type:\"product\"}]});");

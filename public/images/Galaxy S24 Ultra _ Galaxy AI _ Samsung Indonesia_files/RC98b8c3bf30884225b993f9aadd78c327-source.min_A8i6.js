@@ -1,0 +1,2 @@
+// For license information, see `https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RC98b8c3bf30884225b993f9aadd78c327-source.js`.
+_satellite.__registerScript('https://assets.adobedtm.com/72afb75f5516/07a30e78d4a7/45b848ee5d0c/RC98b8c3bf30884225b993f9aadd78c327-source.min.js', "var scrID=document.createElement(\"script\");scrID.type=\"text/javascript\",scrID.async=!0,scrID.src=\"https://samsungid.api.useinsider.com/ins.js?id=10006300\";var fs=document.getElementsByTagName(\"script\")[0];fs.parentNode.insertBefore(scrID,fs);");
